@@ -3,7 +3,7 @@ public class AnimaleClonazione extends Animale {
 	
 	public AnimaleClonazione(int x, int y) {
 		super (x, y);
-		spostamenti = 10;
+		
 		
 	}
 	

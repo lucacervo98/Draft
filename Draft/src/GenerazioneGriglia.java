@@ -63,6 +63,34 @@ public class GenerazioneGriglia {
 		}
 	}
 
+	public Pedina[][] getGriglia() {
+		return griglia;
+	}
+	
+	public ArrayList<Cibo> getListaCibo() {
+		return listaCibo;
+	}
+	
+	public ArrayList<AnimaleAccoppiamento> getListaAnimaleAcc() {
+		return listaAnimaleAcc;
+	}
+
+	public ArrayList<AnimaleClonazione> getListaAnimaleClon() {
+		return listaAnimaleClon;
+	}
+
+	public int getRighe() {
+		return righe;
+	}
+
+	public int getColonne() {
+		return colonne;
+	}
+	
+	public void svolgereTurno() {
+		
+	}
+	
 	public String toString() {
 		String temp = "";
 		for (int i = 0; i < righe; i++) {
