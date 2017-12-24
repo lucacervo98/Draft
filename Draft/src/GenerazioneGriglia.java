@@ -62,7 +62,17 @@ public class GenerazioneGriglia {
 			}
 		}
 	}
-
+	
+	public static void faiUnTurno(GenerazioneGriglia s) {
+		for (int i = 0; i < s.getListaAnimaleAcc().size(); i++) {
+			s.listaAnimaleAcc.get(i).movimento(s);
+			//mancano gli altri animali
+		}
+			
+	}
+	
+	//metodi Get()
+	
 	public Pedina[][] getGriglia() {
 		return griglia;
 	}
@@ -87,9 +97,6 @@ public class GenerazioneGriglia {
 		return colonne;
 	}
 	
-	public void svolgereTurno() {
-		
-	}
 	
 	public String toString() {
 		String temp = "";

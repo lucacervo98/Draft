@@ -5,7 +5,7 @@ public class Test {
 		GenerazioneGriglia griglia = new GenerazioneGriglia (10, 10);
 		griglia.inserisciNellaGriglia();
 		System.out.println(griglia);
-		Animale.turno(griglia);
+		GenerazioneGriglia.faiUnTurno(griglia);
 		System.out.println(griglia);
 	}
 }
