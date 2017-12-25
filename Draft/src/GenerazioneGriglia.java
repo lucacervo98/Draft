@@ -9,7 +9,7 @@ public class GenerazioneGriglia {
 	private ArrayList<AnimaleAccoppiamento> listaAnimaleAcc = new ArrayList();
 	private ArrayList<AnimaleClonazione> listaAnimaleClon = new ArrayList();
 	private Random rnd = new Random();
-	private Random rndSeed = new Random(5); //oppure rnd.ints(numero origine, numero massimo+1) ???
+	
 
 	//costruttore della griglia (minimo 5x5)
 	public GenerazioneGriglia(int righe, int colonne) {
@@ -27,7 +27,7 @@ public class GenerazioneGriglia {
 
 		int caselle = righe * colonne;
 		int met‡Griglia = caselle / 2;
-		int randomAnimali = rndSeed.nextInt(met‡Griglia);
+		
 
 		//cibo (al massimo la met‡ della griglia)
 		for (int i = 0; i < met‡Griglia; i++) {
@@ -40,8 +40,8 @@ public class GenerazioneGriglia {
 			}
 		}
 
-		//animale che si accoppia (min 5, se non trova nessuno nelle caselle, al max met‡ griglia) 
-		for (int i = 0; i < randomAnimali; i++) {
+		//animale che si accoppia (al massimo la met‡ della met‡ della griglia + 1) 
+		for (int i = 0; i < met‡Griglia/2 + 1; i++) {
 			int x = rnd.nextInt(righe);
 			int y = rnd.nextInt(colonne);
 			if (griglia[x][y] == null) {
@@ -51,8 +51,8 @@ public class GenerazioneGriglia {
 			}
 		}
 
-		//animale che si clona (min 5, se non trova nessuno nelle caselle, al max met‡ griglia)
-		for (int i = 0; i < randomAnimali; i++) {
+		//animale che si clona (al massimo la met‡ della met‡ della griglia + 1)
+		for (int i = 0; i < met‡Griglia/2 + 1; i++) {
 			int x = rnd.nextInt(righe);
 			int y = rnd.nextInt(colonne);
 			if (griglia[x][y] == null) {
@@ -63,9 +63,10 @@ public class GenerazioneGriglia {
 		}
 	}
 	
+	// fa un turno, ovvero fa spostare ogni animale presente nelle liste
 	public static void faiUnTurno(GenerazioneGriglia s) {
 		for (int i = 0; i < s.getListaAnimaleAcc().size(); i++) {
-			s.listaAnimaleAcc.get(i).movimento(s);
+			s.listaAnimaleAcc.get(i).movimento(s, i);
 			//mancano gli altri animali
 		}
 			
@@ -112,5 +113,4 @@ public class GenerazioneGriglia {
 		}
 		return temp;
 	}
-
 }
