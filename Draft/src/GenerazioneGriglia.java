@@ -9,9 +9,8 @@ public class GenerazioneGriglia {
 	private ArrayList<AnimaleAccoppiamento> listaAnimaleAcc = new ArrayList();
 	private ArrayList<AnimaleClonazione> listaAnimaleClon = new ArrayList();
 	private Random rnd = new Random();
-	
 
-	//costruttore della griglia (minimo 5x5)
+	// costruttore della griglia (minimo 5x5)
 	public GenerazioneGriglia(int righe, int colonne) {
 
 		if (righe >= 5 && colonne >= 5)
@@ -22,14 +21,13 @@ public class GenerazioneGriglia {
 
 	}
 
-	//fa spawnare nella griglia gli oggetti
+	// fa spawnare nella griglia gli oggetti
 	public void inserisciNellaGriglia() {
 
 		int caselle = righe * colonne;
 		int met‡Griglia = caselle / 2;
-		
 
-		//cibo (al massimo la met‡ della griglia)
+		// cibo (al massimo la met‡ della griglia)
 		for (int i = 0; i < met‡Griglia; i++) {
 			int x = rnd.nextInt(righe);
 			int y = rnd.nextInt(colonne);
@@ -40,8 +38,8 @@ public class GenerazioneGriglia {
 			}
 		}
 
-		//animale che si accoppia (al massimo la met‡ della met‡ della griglia + 1) 
-		for (int i = 0; i < met‡Griglia/2 + 1; i++) {
+		// animale che si accoppia (al massimo la met‡ della met‡ della griglia + 1)
+		for (int i = 0; i < met‡Griglia / 2 + 1; i++) {
 			int x = rnd.nextInt(righe);
 			int y = rnd.nextInt(colonne);
 			if (griglia[x][y] == null) {
@@ -51,8 +49,8 @@ public class GenerazioneGriglia {
 			}
 		}
 
-		//animale che si clona (al massimo la met‡ della met‡ della griglia + 1)
-		for (int i = 0; i < met‡Griglia/2 + 1; i++) {
+		// animale che si clona (al massimo la met‡ della met‡ della griglia + 1)
+		for (int i = 0; i < met‡Griglia / 2 + 1; i++) {
 			int x = rnd.nextInt(righe);
 			int y = rnd.nextInt(colonne);
 			if (griglia[x][y] == null) {
@@ -62,26 +60,28 @@ public class GenerazioneGriglia {
 			}
 		}
 	}
-	
+
 	// fa un turno, ovvero fa spostare ogni animale presente nelle liste
 	public static void faiUnTurno(GenerazioneGriglia s) {
 		for (int i = 0; i < s.getListaAnimaleAcc().size(); i++) {
-			s.listaAnimaleAcc.get(i).movimento(s, i);
-			//mancano gli altri animali
+			s.listaAnimaleAcc.get(i).movimentoAnimaleAcc(s, i); }
+		for (int j = 0; j < s.getListaAnimaleClon().size(); j++) {	
+			s.listaAnimaleClon.get(j).movimentoAnimaleClon(s, j);
+			// mancano gli altri animali
 		}
-			
-	}
+	  }
 	
-	//metodi Get()
-	
+
+	// metodi Get()
+
 	public Pedina[][] getGriglia() {
 		return griglia;
 	}
-	
+
 	public ArrayList<Cibo> getListaCibo() {
 		return listaCibo;
 	}
-	
+
 	public ArrayList<AnimaleAccoppiamento> getListaAnimaleAcc() {
 		return listaAnimaleAcc;
 	}
@@ -97,8 +97,7 @@ public class GenerazioneGriglia {
 	public int getColonne() {
 		return colonne;
 	}
-	
-	
+
 	public String toString() {
 		String temp = "";
 		for (int i = 0; i < righe; i++) {
