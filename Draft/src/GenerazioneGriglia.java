@@ -11,14 +11,15 @@ public class GenerazioneGriglia {
 	private Random rnd = new Random();
 
 	// costruttore della griglia (minimo 5x5)
-	public GenerazioneGriglia(int righe, int colonne) {
+	public GenerazioneGriglia(int righe, int colonne) throws Exception {
 
-		if (righe >= 5 && colonne >= 5)
+		if (righe >= 5 && colonne >= 5) {
 			griglia = new Pedina[righe][colonne];
 
-		this.righe = righe;
-		this.colonne = colonne;
-
+			this.righe = righe;
+			this.colonne = colonne;
+		} else
+			new Exception();
 	}
 
 	// fa spawnare nella griglia gli oggetti
@@ -61,15 +62,6 @@ public class GenerazioneGriglia {
 		}
 	}
 
-	// fa un turno, ovvero fa spostare ogni animale presente nelle liste
-	public static void faiUnTurno(GenerazioneGriglia s) {
-		for (int i = 0; i < s.getListaAnimaleAcc().size(); i++) {
-			s.listaAnimaleAcc.get(i).movimentoAnimaleAcc(s, i); }
-		for (int j = 0; j < s.getListaAnimaleClon().size(); j++) {	
-			s.listaAnimaleClon.get(j).movimentoAnimaleClon(s, j);
-			// mancano gli altri animali
-		}
-	  }
 	
 
 	// metodi Get()
