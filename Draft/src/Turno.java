@@ -16,7 +16,6 @@ public class Turno {
 			}
 			for (int j = 0; j < s.getListaAnimaleClon().size(); j++) {
 				s.getListaAnimaleClon().get(j).movimentoAnimaleClon(s, j);
-				// mancano gli altri animali
 			}
 			System.out.println(s);
 		}

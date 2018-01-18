@@ -35,8 +35,8 @@ public class AnimaleAccoppiamento extends Animale {
 				s.getListaAnimaleAcc().get(i).setSpostamenti(s.getListaAnimaleAcc().get(i).getSpostamenti() - 1);
 				s.getListaAnimaleAcc().get(i).setX(s.getListaAnimaleAcc().get(i).getX() + k);
 				s.getListaAnimaleAcc().get(i).setY(s.getListaAnimaleAcc().get(i).getY() + z);
-				/*problema*/if (s.getListaAnimaleAcc().get(i).getSpostamenti() == 0) { 
-					s.getGriglia()[s.getListaAnimaleAcc().get(i).getX()+k][s.getListaAnimaleAcc().get(i).getY()+z] = null;
+				if (s.getListaAnimaleAcc().get(i).getSpostamenti() == 0) {
+					s.getGriglia()[s.getListaAnimaleAcc().get(i).getX()][s.getListaAnimaleAcc().get(i).getY()] = null;
 					s.getListaAnimaleAcc().remove(i);
 				}
 				check = true;
