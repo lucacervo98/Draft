@@ -4,13 +4,14 @@ public class Test {
 	public static void main(String[] args) {
 		Turno turno = new Turno();
 		
-		try {
+		//try {
 			GenerazioneGriglia griglia = new GenerazioneGriglia(5, 5);
 			griglia.inserisciNellaGriglia();
+			System.out.println("\n"+"Inizia il gioco!"+"\n");
 			System.out.println(griglia);
-			turno.faiTurni(griglia, turno, 15);
-		} catch (Exception e) {
+			turno.faiTurni(griglia, turno, 2);
+		//} catch (Exception e) {
 			System.out.println("Errore: inseriti valori per la griglia minori di 5.");
 		}
-	}
+	//}
 }

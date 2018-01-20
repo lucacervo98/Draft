@@ -6,7 +6,6 @@ public class Cibo extends Pedina {
 	}
 
 	public String toString() {
-		String temp;
-		return temp = "[*]";
+		return "[*]";
 	}
 }

@@ -11,7 +11,7 @@ public class GenerazioneGriglia {
 	private Random rnd = new Random();
 
 	// costruttore della griglia (minimo 5x5)
-	public GenerazioneGriglia(int righe, int colonne) throws Exception {
+	public GenerazioneGriglia(int righe, int colonne) /*throws Exception*/ {
 
 		if (righe >= 5 && colonne >= 5) {
 			griglia = new Pedina[righe][colonne];
