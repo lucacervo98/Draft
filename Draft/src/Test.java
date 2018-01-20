@@ -11,7 +11,7 @@ public class Test {
 			System.out.println(griglia);
 			turno.faiTurni(griglia, turno, 2);
 		//} catch (Exception e) {
-			System.out.println("Errore: inseriti valori per la griglia minori di 5.");
+		//	System.out.println("Errore: inseriti valori per la griglia minori di 5.");
 		}
 	//}
 }

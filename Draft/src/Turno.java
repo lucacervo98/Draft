@@ -24,6 +24,9 @@ public class Turno {
 		for (int j = 0; j < s.getListaAnimaleClon().size(); j++) {
 			s.getListaAnimaleClon().get(j).movimentoAnimaleClon(s, j);
 		}
+		for (int k = 0; k < s.getListaAnimaleClon().size(); k++) {
+			s.getListaAnimaleClon().get(k).checkClonazione(s, k);
+		}
 		System.out.println(s);
 	}
 

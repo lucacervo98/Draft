@@ -54,12 +54,20 @@ public class AnimaleClonazione extends Animale {
 			if (x == 0 && y == 0) {
 				check = true;
 			}
-			
+
 		} while (check == false);
 
-		// check clonazione
+		// check morte
+		if (s.getListaAnimaleClon().get(i).getSpostamenti() == 0) {
+			s.getGriglia()[s.getListaAnimaleClon().get(i).getX()][s.getListaAnimaleClon().get(i).getY()] = null;
+			s.getListaAnimaleClon().remove(i);
+		}
+	}
+
+	// check clonazione
+	public void checkClonazione(GenerazioneGriglia s, int i) {
 		if (s.getListaAnimaleClon().get(i).getSpostamenti() > 20) {
-			boolean check2 = false;
+			boolean check = false;
 			do {
 				int k = rnd.nextInt(3) - 1;
 				int z = rnd.nextInt(3) - 1;
@@ -72,15 +80,9 @@ public class AnimaleClonazione extends Animale {
 					s.getGriglia()[x][y] = animaleClon;
 					s.getListaAnimaleClon().get(i).setSpostamenti(10);
 					s.getListaAnimaleClon().add(animaleClon);
-					check2 = true;
+					check = true;
 				}
-			} while (check2 == false);
-		}
-
-		// check morte
-		if (s.getListaAnimaleClon().get(i).getSpostamenti() == 0) {
-			s.getGriglia()[s.getListaAnimaleClon().get(i).getX()][s.getListaAnimaleClon().get(i).getY()] = null;
-			s.getListaAnimaleClon().remove(i);
+			} while (check == false);
 		}
 	}
 
