@@ -2,9 +2,11 @@ import java.util.Random;
 
 public class AnimaleAccoppiamento extends Animale {
 	private Random rnd = new Random();
+	private boolean accoppiato;
 
 	public AnimaleAccoppiamento(int x, int y) {
 		super(x, y);
+		accoppiato = false;
 	}
 
 	// check estremi per animale che si accoppia
@@ -63,30 +65,51 @@ public class AnimaleAccoppiamento extends Animale {
 			s.getGriglia()[s.getListaAnimaleAcc().get(i).getX()][s.getListaAnimaleAcc().get(i).getY()] = null;
 			s.getListaAnimaleAcc().remove(i);
 		}
+	}
 
-		/*
-		 * if (s.getListaAnimaleAcc().get(i).getSpostamenti() > 5 &&
-		 * s.getListaAnimaleAcc().get(i).getSpostamenti() < 20) { boolean check2 =
-		 * false; int k = rnd.nextInt(3) - 1; int z = rnd.nextInt(3) - 1; int x =
-		 * s.getListaAnimaleAcc().get(i).getX() + k; int y =
-		 * s.getListaAnimaleAcc().get(i).getY() + z;
-		 * 
-		 * // do { if (x >= 0 && x <= s.getRighe() - 1 && y >= 0 && y <= s.getColonne()
-		 * - 1 && s.getGriglia()[x][y] == null && (k != 0 || z != 0)) { for (int q = -1;
-		 * q < 2; q++) { for (int w = -1; w < 2; w++) { if
-		 * (s.getListaAnimaleAcc().get(i).getX() + q >= 0 &&
-		 * s.getListaAnimaleAcc().get(i).getX() + q < s.getRighe() - 1 &&
-		 * s.getListaAnimaleAcc().get(i).getY() + w >= 0 &&
-		 * s.getListaAnimaleAcc().get(i).getY() + w < s.getColonne() - 1 &&
-		 * s.getGriglia()[s.getListaAnimaleAcc().get(i).getX() +
-		 * q][s.getListaAnimaleAcc() .get(i).getY() + w] instanceof
-		 * AnimaleAccoppiamento) { AnimaleAccoppiamento animaleAcc = new
-		 * AnimaleAccoppiamento(x, y);
-		 * s.getGriglia()[s.getListaAnimaleAcc().get(i).getX() +
-		 * x][s.getListaAnimaleAcc().get(i) .getY() + y] = animaleAcc; check2 = true; }
-		 * } } } }
-		 */
-		// } while (check2 == false);
+	public void checkAccoppiamento(GenerazioneGriglia s, int i) {
+		
+		if (s.getListaAnimaleAcc().get(i).getSpostamenti() > 5 && s.getListaAnimaleAcc().get(i).getSpostamenti() < 20
+				&& !s.getListaAnimaleAcc().get(i).isAccoppiato() ) {
+
+			for (int k = -1; k <= 1; k++) {
+				for (int z = -1; z <= 1; z++) {
+					for (int q = 0; q < s.getListaAnimaleAcc().size(); q++) {
+						if ((k != 0 || z != 0) && s.getListaAnimaleAcc().get(i).checkEstremiAnimAcc(s, i, k, z)
+								&& s.getGriglia()[s.getListaAnimaleAcc().get(i).getX() + k][s.getListaAnimaleAcc()
+										.get(i).getY() + z] == s.getListaAnimaleAcc().get(q) && !s.getListaAnimaleAcc().get(q).isAccoppiato()) {
+							
+							boolean check = false;
+							
+							for (int x = 0; x < s.getRighe(); x++) {
+								for (int y = 0; y < s.getColonne(); y++) {
+									if (s.getGriglia()[x][y] == null) {
+										AnimaleAccoppiamento animaleAcc = new AnimaleAccoppiamento(x, y);
+										s.getListaAnimaleAcc().get(i).setAccoppiato(true);
+										s.getListaAnimaleAcc().get(q).setAccoppiato(true);
+										animaleAcc.setAccoppiato(true);
+										s.getGriglia()[x][y] = animaleAcc;
+										s.getListaAnimaleAcc().add(animaleAcc);
+										check = true;
+										break;
+									}
+								} if (check == true) break;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// metodi get e set
+	
+	public boolean isAccoppiato() {
+		return accoppiato;
+	}
+
+	public void setAccoppiato(boolean accoppiato) {
+		this.accoppiato = accoppiato;
 	}
 
 	public String toString() {

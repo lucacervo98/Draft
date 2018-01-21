@@ -2,10 +2,9 @@ import java.util.Random;
 
 public class AnimaleClonazione extends Animale {
 	private Random rnd = new Random();
-
+	
 	public AnimaleClonazione(int x, int y) {
 		super(x, y);
-
 	}
 
 	// check estremi per animale che si clona
@@ -68,24 +67,22 @@ public class AnimaleClonazione extends Animale {
 	public void checkClonazione(GenerazioneGriglia s, int i) {
 		if (s.getListaAnimaleClon().get(i).getSpostamenti() > 20) {
 			boolean check = false;
-			do {
-				int k = rnd.nextInt(3) - 1;
-				int z = rnd.nextInt(3) - 1;
-				int x = s.getListaAnimaleClon().get(i).getX() + k;
-				int y = s.getListaAnimaleClon().get(i).getY() + z;
-
-				if (x >= 0 && x < s.getRighe() && y >= 0 && y < s.getColonne() && s.getGriglia()[x][y] == null
-						&& (k != 0 || z != 0)) {
-					AnimaleClonazione animaleClon = new AnimaleClonazione(x, y);
-					s.getGriglia()[x][y] = animaleClon;
-					s.getListaAnimaleClon().get(i).setSpostamenti(10);
-					s.getListaAnimaleClon().add(animaleClon);
-					check = true;
-				}
-			} while (check == false);
+			
+			for (int x = 0; x < s.getRighe(); x++) {
+				for (int y = 0; y < s.getColonne(); y++) {
+					if (s.getGriglia()[x][y] == null) {
+						AnimaleClonazione animaleClon = new AnimaleClonazione(x, y);
+	                    s.getGriglia()[x][y] = animaleClon;
+	                    s.getListaAnimaleClon().get(i).setSpostamenti(10);
+	                    s.getListaAnimaleClon().add(animaleClon);
+	                    check = true;
+	                    break;
+					}
+				} if (check == true) break;
+			}
 		}
 	}
-
+	
 	public String toString() {
 		return "[c]";
 	}

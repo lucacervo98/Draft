@@ -1,17 +1,61 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class Test {
 
 	public static void main(String[] args) {
 		Turno turno = new Turno();
+		Properties p = new Properties();
 
-		//try {
-			GenerazioneGriglia griglia = new GenerazioneGriglia(5, 5);
-			griglia.inserisciNellaGriglia();
-			System.out.println("\n" + "Inizia il gioco!" + "\n");
-			System.out.println(griglia);
-			turno.faiTurni(griglia, turno, 2);
-		//} catch (Exception e) {
-		//	System.out.println("Errore: inseriti valori per la griglia minori di 5.");
+		GenerazioneGriglia griglia = null;
+
+		try {
+			InputStream is = new FileInputStream("Config.properties");
+			p.load(is);
+		} catch (FileNotFoundException e) {
+			System.out.println("Errore: file di configurazione mancante.");
+		} catch (IOException e) {
+			System.out.println("Errore durante la lettura del file.");
 		}
-	//}
+
+		try {
+			Integer.parseInt(p.getProperty("righe").trim());
+			Integer.parseInt(p.getProperty("colonne").trim());
+			Integer.parseInt(p.getProperty("turni").trim());
+			Integer.parseInt(p.getProperty("animali_che_si_accoppiano").trim());
+			Integer.parseInt(p.getProperty("animali_che_si_clonano").trim());
+
+			try {
+				griglia = new GenerazioneGriglia(Integer.parseInt(p.getProperty("righe").trim()),
+						Integer.parseInt(p.getProperty("colonne").trim()));
+				griglia.inserisciNellaGriglia(griglia,
+						Integer.parseInt(p.getProperty("animali_che_si_accoppiano").trim()),
+						Integer.parseInt(p.getProperty("animali_che_si_clonano").trim()));
+				System.out.println("\n" + "Inizia il gioco!" + "\n");
+				System.out.println(griglia);
+				turno.faiTurni(griglia, turno, Integer.parseInt(p.getProperty("turni").trim()));
+			} catch (EccezioneGrigliaInferiore5x5 e) {
+				System.out.println("Errore: inseriti valori per la griglia minori di 5.");
+			} catch (EccezioneTurniNegativi e) {
+				System.out.println("Errore: inserito numero turni negativi o uguale a 0.");
+			} catch (EccezioneGrigliaPienaAInizioGioco e) {
+				System.out.println("Errore: inseriti valori troppo alti per gli animali iniziali.");
+			} catch (EccezioneAnimaliNegativi e) {
+				System.out.println("Errore: inserito numero negativo per la creazione di uno o più animali.");
+			} catch (EccezioneGrigliaPiena e) {
+				System.out.println(griglia);
+				System.out.println("Fine del gioco: griglia piena.");
+				System.out.println("\n" + "Gli animali che si accoppiano sono rimasti: "
+						+ griglia.getListaAnimaleAcc().size() + ".\n" + "Gli animali che si clonano sono rimasti: "
+						+ griglia.getListaAnimaleClon().size() + ".");
+			}
+
+		} catch (NumberFormatException e) {
+			System.out.println(
+					"Errore: uno o più dati non inseriti o inseriti non correttamente nel file di configurazione.");
+		}
+	}
 }

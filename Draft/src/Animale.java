@@ -6,18 +6,6 @@ public class Animale extends Pedina {
 		super (x, y);
 		spostamenti = 10;
 	}
-
-	/*
-	 * public static boolean checkCibo(GenerazioneGriglia s, int i, int k, int z) { 
-	 * boolean cibo = false;
-	 * 
-	 * for (int i = 0; i < s.getListaCibo().size(); i++) {
-	 * 
-	 * 
-	 * }
-	 * 
-	 * }
-	 */
 	
 	// metodi get e set
 

@@ -25,6 +25,5 @@ public class Pedina {
 
 	public String toString() {
 		return "[ ]";
-
 	}
 }
