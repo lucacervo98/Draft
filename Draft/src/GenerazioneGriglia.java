@@ -24,7 +24,7 @@ public class GenerazioneGriglia {
 
 	// fa spawnare nella griglia gli oggetti
 	public void inserisciNellaGriglia(GenerazioneGriglia s, int n, int m)
-			throws EccezioneGrigliaPienaAInizioGioco, EccezioneAnimaliNegativi {
+			throws EccezioneGrigliaPienaAInizioGioco, EccezioneAnimaliNegativiOUgualiAZero {
 
 		int caselle = righe * colonne;
 		int metàGriglia = caselle / 2;
@@ -41,7 +41,7 @@ public class GenerazioneGriglia {
 		}
 
 		// animali che si accoppiano
-		if (n >= 0) {
+		if (n > 0) {
 			for (int i = 0; i < n; i++) {
 				boolean check = false;
 				do {
@@ -61,11 +61,11 @@ public class GenerazioneGriglia {
 				} while (check == false);
 			}
 		} else {
-			throw new EccezioneAnimaliNegativi();
+			throw new EccezioneAnimaliNegativiOUgualiAZero();
 		}
 
 		// animali che si clonano
-		if (m >= 0) {
+		if (m > 0) {
 			for (int j = 0; j < m; j++) {
 				boolean check = false;
 				do {
@@ -85,7 +85,7 @@ public class GenerazioneGriglia {
 				} while (check == false);
 			}
 		} else {
-			throw new EccezioneAnimaliNegativi();
+			throw new EccezioneAnimaliNegativiOUgualiAZero();
 		}
 	}
 

@@ -13,8 +13,8 @@ public class Turno {
 			if (s.getListaAnimaleAcc().size() == 0 && s.getListaAnimaleClon().size() == 0) {
 				System.out.println("Tutti gli animali sono morti.");
 			} else {
-				System.out.println("Gli animali che si accoppiano sono rimasti: " + s.getListaAnimaleAcc().size()
-						+ ".\n" + "Gli animali che si clonano sono rimasti: " + s.getListaAnimaleClon().size() + ".");
+				System.out.println("Sono rimasti " + s.getListaAnimaleAcc().size() + " animali che si accoppiano."
+						+ "\n" + "Sono rimasti " + s.getListaAnimaleClon().size() + " animali che si clonano.");
 			}
 		}
 

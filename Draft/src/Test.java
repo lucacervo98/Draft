@@ -43,14 +43,12 @@ public class Test {
 				System.out.println("Errore: inserito numero turni negativi o uguale a 0.");
 			} catch (EccezioneGrigliaPienaAInizioGioco e) {
 				System.out.println("Errore: inseriti valori troppo alti per gli animali iniziali.");
-			} catch (EccezioneAnimaliNegativi e) {
-				System.out.println("Errore: inserito numero negativo per la creazione di uno o più animali.");
+			} catch (EccezioneAnimaliNegativiOUgualiAZero e) {
+				System.out.println("Errore: inserito numero negativo o uguale a 0 per la creazione di uno o più animali.");
 			} catch (EccezioneGrigliaPiena e) {
 				System.out.println(griglia);
 				System.out.println("Fine del gioco: griglia piena.");
-				System.out.println("\n" + "Gli animali che si accoppiano sono rimasti: "
-						+ griglia.getListaAnimaleAcc().size() + ".\n" + "Gli animali che si clonano sono rimasti: "
-						+ griglia.getListaAnimaleClon().size() + ".");
+				System.out.println("\n" + "Sono rimasti "+griglia.getListaAnimaleAcc().size()+" animali che si accoppiano."+"\n"+"Sono rimasti "+griglia.getListaAnimaleClon().size()+" animali che si clonano.");
 			}
 
 		} catch (NumberFormatException e) {
